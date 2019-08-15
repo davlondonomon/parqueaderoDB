@@ -157,23 +157,3 @@ ALTER TABLE detalle ADD FOREIGN KEY (codigo_lavado) REFERENCES lavado(codigo_lav
 ALTER TABLE detalle ADD FOREIGN KEY (codigo_parqueo) REFERENCES parqueo(codigo_parqueo);
 ALTER TABLE parqueo ADD FOREIGN KEY (codigo_celda) REFERENCES celda(codigo_celda);
 ALTER TABLE casillero ADD FOREIGN KEY (codigo_celda) REFERENCES celda(codigo_celda);
-
-
-
-
-----inserts------
--- empresa:
--- INSERT INTO `empresa`(`nit`, `nombre`, `direccion`, `pagina_web`) VALUES (1,'postobon','CR-1 Cl-2 ','www.postobon.com');
--- INSERT INTO `empresa`(`nit`, `nombre`, `direccion`, `pagina_web`) VALUES (2,'cocacola','CR-2 cl-3','www.cocacola.com');
-
-
--- persona:
--- INSERT INTO `persona`(`cedula`, `nombre`, `DIRECCION`, `telefono`) VALUES (1,'Santiago Cadavid','Girardota','302456789');
--- INSERT INTO `persona`(`cedula`, `nombre`, `DIRECCION`, `telefono`) VALUES (2,'sara Cadavid','bello','302356789');
-
--- Factura:
--- INSERT INTO `factura`(`codigo`, `fecha`, `valor`, `fecha_retorno`, `tipo`, `cedula_p`) VALUES (1,DATE('2010-01-01'),500,DATE('2010-02-01'),'P',1);
--- INSERT INTO `factura`(`codigo`, `fecha`, `valor`, `fecha_retorno`, `tipo`, `cedula_p`) VALUES (2,DATE('2012-05-01'),500,DATE('2016-02-01'),'P',2);
-
--- INSERT INTO `factura`(`codigo`, `fecha`, `valor`, `tipo`, `nit_e`) VALUES (3,DATE('2010-01-01'),50000,'C',1);
--- INSERT INTO `factura`(`codigo`, `fecha`, `valor`, `tipo`, `nit_e`) VALUES (4,DATE('2012-05-01'),50000,'C',2);
