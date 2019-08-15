@@ -21,7 +21,7 @@ if (isset($_POST["consulta"])) {
                     </thead>
                     <tbody>';
         //reemplazar con consulta
-        $query = mysqli_query($link, "SELECT * from factura");
+        $query = mysqli_query($link, 'SELECT * FROM factura WHERE cedula_persona IS NULL AND nit IS NULL');
         while ($row = mysqli_fetch_array($query)) {
             $codigo_factura = $row['codigo_factura'];
             $fecha_de_generacion = $row['fecha_de_generacion'];

@@ -154,3 +154,37 @@ ALTER TABLE detalle ADD FOREIGN KEY (codigo_factura,fecha_de_generacion) REFEREN
 ALTER TABLE detalle ADD FOREIGN KEY (codigo_lavado) REFERENCES lavado(codigo_lavado);
 ALTER TABLE detalle ADD FOREIGN KEY (codigo_parqueo) REFERENCES parqueo(codigo_parqueo);
 ALTER TABLE parqueo ADD FOREIGN KEY (codigo_celda) REFERENCES celda(codigo_celda);
+
+-- pruebas
+SELECT       `cedula_persona`
+    FROM     `factura`
+    where 'cedula_persona' is not null
+    GROUP BY `cedula_persona`
+    ORDER BY COUNT(*) DESC
+    LIMIT    1;
+
+select max(count(*)) from cheques where 
+city='Toronto' group by region
+
+select cedula_persona from factura where cedula_persona is not null group by cedula_persona select max(count(*)) desc;
+
+
+select cedula_persona from factura where cedula_persona is not null GROUP by cedula_persona ;
+
+select count(*) as Count, cedula_persona
+FROM factura where cedula_persona is not null
+
+GROUP BY cedula_persona;
+
+SELECT cedula_persona, COUNT(*) as con
+FROM factura where cedula_persona is not null
+group by cedula_persona
+;
+
+select cedula_persona
+from   factura
+where  cedula_persona is not null
+group by cedula_persona
+having count(*) = (select count(*) from factura);
+
+select cedula_persona, count(cedula_persona) as con from factura where cedula_persona = 0 group by cedula_persona ;
