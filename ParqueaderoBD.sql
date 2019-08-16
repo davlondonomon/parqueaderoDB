@@ -1,14 +1,23 @@
 
-CREATE TABLE cliente(
-    cedula_cliente INT(10) UNSIGNED PRIMARY KEY, 
-    nombre_cliente VARCHAR(40) NOT NULL, 
-    telefono VARCHAR(20) NOT NULL, 
+CREATE TABLE persona(
+    cedula_persona INT(10) UNSIGNED PRIMARY KEY, 
+    nombre_persona VARCHAR(40) NOT NULL, 
+    telefono_persona VARCHAR(20) NOT NULL, 
     direccion VARCHAR(30) NOT NULL, 
     genero VARCHAR(10) NOT NULL,
 
     cedula_empleado INT(10) UNSIGNED NOT NULL,
 
     CHECK (genero = 'masculino' OR genero = 'femenino')
+)ENGINE = InnoDB;
+
+
+CREATE TABLE empresa(
+    nit INT(10) UNSIGNED PRIMARY KEY, 
+    nombre_empresa VARCHAR(40) NOT NULL, 
+    telefono_empresa VARCHAR(20) NOT NULL, 
+    nombre_gerente VARCHAR(20) NOT NULL
+
 )ENGINE = InnoDB;
 
 
@@ -40,25 +49,15 @@ CREATE TABLE vehiculo(
     placa VARCHAR(8) PRIMARY KEY,
     marca VARCHAR(20) NOT NULL,
     modelo VARCHAR(4) NOT NULL,
+    cantidad_puertas INT(2) UNSIGNED,
+    cantidad_cascos INT(1) UNSIGNED,
     tipo VARCHAR(10),
 
-    cedula_cliente INT(10) UNSIGNED NOT NULL,
+    cedula_persona INT(10) UNSIGNED,
+    nit INT(20) UNSIGNED,
 
+    CHECK (tipo = 'automovil' OR tipo = 'motociclieta'),
     CHECK ((tipo = 'automovil' AND cantidad_puertas IS NOT NULL AND cantidad_cascos IS NULL) OR (tipo = 'motocicleta' AND cantidad_puertas IS NULL AND cantidad_cascos IS NOT NULL))
-)ENGINE = InnoDB;
-
-
-CREATE TABLE automovil(
-    placa VARCHAR(8) PRIMARY KEY,
-    cantidad_puertas INT(2) UNSIGNED NOT NULL,
-
-    CHECK (cantidad_puertas >= 1)
-)ENGINE = InnoDB;
-
-
-CREATE TABLE motocicleta(
-    placa VARCHAR(8) PRIMARY KEY,
-    cantidad_cascos INT(1) UNSIGNED NOT NULL
 )ENGINE = InnoDB;
 
 
@@ -81,7 +80,7 @@ CREATE TABLE lavado(
     cedula_empleado INT(10) NOT NULL,
 
     CHECK (repuesto = 'SI' OR repuesto = 'NO'),
-    CHECK (tipo_de_lavado = 'regular' OR repuesto = 'completo')
+    CHECK (tipo_de_lavado = 'regular' OR tipo_de_lavado = 'completo')
 )ENGINE = InnoDB;
 
 
@@ -105,13 +104,20 @@ CREATE TABLE factura(
     PRIMARY KEY (codigo_factura, fecha_de_generacion),
 
     cedula_empleado INT(10) UNSIGNED NOT NULL,
-    cedula_cliente INT(10) UNSIGNED NOT NULL
+
+    cedula_persona INT(10) UNSIGNED,
+    nit INT(25) UNSIGNED,
+
+    CHECK ((cedula_persona IS NULL AND nit IS NOT NULL) OR (cedula_persona IS NOT NULL AND nit IS NULL))
+
 )ENGINE = InnoDB;
+
 
 
 CREATE TABLE detalle(
     codigo_detalle VARCHAR(10),
     valor INT(10) NOT NULL,
+    descripcion VARCHAR(141),
     codigo_factura VARCHAR(10),
     fecha_de_generacion DATE NOT NULL,
     PRIMARY KEY(codigo_detalle, codigo_factura, fecha_de_generacion),
@@ -133,27 +139,19 @@ CREATE TABLE celda(
 )ENGINE = InnoDB;
 
 
-CREATE TABLE casillero(
-    codigo_celda VARCHAR(5),
-    ocupado VARCHAR(2) NOT NULL,
-    PRIMARY KEY (codigo_celda),
-
-    CHECK (ocupado = 'SI' OR ocupado = 'NO')
-)ENGINE = InnoDB;
-
-ALTER TABLE cliente ADD FOREIGN KEY (cedula_empleado) REFERENCES empleado(cedula_empleado);
+ 
+ALTER TABLE persona ADD FOREIGN KEY (cedula_empleado) REFERENCES empleado(cedula_empleado);
 ALTER TABLE administrador ADD FOREIGN KEY (cedula_empleado) REFERENCES empleado(cedula_empleado); 
 ALTER TABLE raso ADD FOREIGN KEY (cedula_empleado) REFERENCES empleado(cedula_empleado); 
-ALTER TABLE vehiculo ADD FOREIGN KEY (cedula_cliente) REFERENCES cliente(cedula_cliente); 
-ALTER TABLE automovil ADD FOREIGN KEY (placa) REFERENCES vehiculo(placa);
-ALTER TABLE motocicleta ADD FOREIGN KEY (placa) REFERENCES vehiculo(placa);
+ALTER TABLE vehiculo ADD FOREIGN KEY (cedula_persona) REFERENCES persona(cedula_persona); 
+ALTER TABLE vehiculo ADD FOREIGN KEY (nit) REFERENCES empresa(nit);
 ALTER TABLE turno ADD FOREIGN KEY (placa) REFERENCES vehiculo(placa); 
 ALTER TABLE turno ADD FOREIGN KEY (codigo_lavado) REFERENCES lavado(codigo_lavado);
 ALTER TABLE parqueo ADD FOREIGN KEY (placa) REFERENCES automovil(placa);
 ALTER TABLE factura ADD FOREIGN KEY (cedula_empleado) REFERENCES empleado(cedula_empleado);
-ALTER TABLE factura ADD FOREIGN KEY (cedula_cliente) REFERENCES cliente(cedula_cliente);
+ALTER TABLE factura ADD FOREIGN KEY (cedula_persona) REFERENCES persona(cedula_persona) ON DELETE CASCADE;
+ALTER TABLE factura ADD FOREIGN KEY (nit) REFERENCES empresa(nit) ON DELETE CASCADE;
 ALTER TABLE detalle ADD FOREIGN KEY (codigo_factura,fecha_de_generacion) REFERENCES factura(codigo_factura, fecha_de_generacion);
-ALTER TABLE detalle ADD FOREIGN KEY (codigo_lavado) REFERENCES lavado(codigo_lavado) ON DELETE CASCADE;
-ALTER TABLE detalle ADD FOREIGN KEY (codigo_parqueo) REFERENCES parqueo(codigo_parqueo) ON DELETE CASCADE;
+ALTER TABLE detalle ADD FOREIGN KEY (codigo_lavado) REFERENCES lavado(codigo_lavado);
+ALTER TABLE detalle ADD FOREIGN KEY (codigo_parqueo) REFERENCES parqueo(codigo_parqueo);
 ALTER TABLE parqueo ADD FOREIGN KEY (codigo_celda) REFERENCES celda(codigo_celda);
-ALTER TABLE casillero ADD FOREIGN KEY (codigo_celda) REFERENCES celda(codigo_celda);
