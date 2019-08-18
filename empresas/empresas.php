@@ -39,6 +39,9 @@
         <li class="nav ">
             <a class="nav-link " href="../busquedas/busquedas.php">Busquedas</a>
         </li>
+        <li class="nav ">
+            <a class="nav-link " href="../consultas/consultas.php">Consultas</a>
+        </li>
 		
 	</ul>
 	

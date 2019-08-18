@@ -1,4 +1,5 @@
-
+CREATE DATABASE parqueadero;
+use parqueadero;
 CREATE TABLE persona(
     cedula_persona INT(10) UNSIGNED PRIMARY KEY, 
     nombre_persona VARCHAR(40) NOT NULL, 
@@ -147,7 +148,7 @@ ALTER TABLE vehiculo ADD FOREIGN KEY (cedula_persona) REFERENCES persona(cedula_
 ALTER TABLE vehiculo ADD FOREIGN KEY (nit) REFERENCES empresa(nit);
 ALTER TABLE turno ADD FOREIGN KEY (placa) REFERENCES vehiculo(placa); 
 ALTER TABLE turno ADD FOREIGN KEY (codigo_lavado) REFERENCES lavado(codigo_lavado);
-ALTER TABLE parqueo ADD FOREIGN KEY (placa) REFERENCES automovil(placa);
+ALTER TABLE parqueo ADD FOREIGN KEY (placa) REFERENCES vehiculo(placa);
 ALTER TABLE factura ADD FOREIGN KEY (cedula_empleado) REFERENCES empleado(cedula_empleado);
 ALTER TABLE factura ADD FOREIGN KEY (cedula_persona) REFERENCES persona(cedula_persona) ON DELETE CASCADE;
 ALTER TABLE factura ADD FOREIGN KEY (nit) REFERENCES empresa(nit) ON DELETE CASCADE;

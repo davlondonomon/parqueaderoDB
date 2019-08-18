@@ -11,8 +11,8 @@ if($cedula<0){
 }
 
 else{
-	$query="INSERT INTO `persona`(`cedula`,`nombre`, `direccion`, `telefono`)
- 	VALUES ('$_POST[cedula]','$_POST[nombre]','$_POST[direccion]','$_POST[telefono]')";
+	$query="INSERT INTO `persona`(`cedula_persona`,`nombre_persona`, `telefono_persona`, `direccion`,`genero`)
+ 	VALUES ('$_POST[cedula]','$_POST[nombre]','$_POST[telefono]','$_POST[direccion]','$_POST[genero]')";
 	$result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
  	if($result){

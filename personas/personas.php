@@ -13,40 +13,40 @@
     <title>inicio</title>
     <!--CDN de boostraps: Libreria de estilos SCSS y CSS para darle unas buena apariencia a la aplicacion
     para mas informacion buscar documentacion de boostraps en: https://getbootstrap.com/docs/4.3/getting-started/introduction/ -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!--CDN de forntawesome: Libreria de estilos SCSS y CSS incluir icononos y formas 
      para mas informacio : https://fontawesome.com/start-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 
 <body>
     <!--Barra de navegacion-->
     <ul class="nav">
         <li class="nav nav-item">
-            <a class="nav-link " href="../index.html">inicio</a>
+            <a class="nav-link" href="../index.html">inicio</a>
         </li>
-        <li class="nav nav-pills">
-            <a class="nav-link active" href="../personas/personas.php">Personas</a>
+        <li class="nav-item nav-pills">
+            <a class="nav-link active" href="personas.php">Personas</a>
         </li>
-		<li class="nav ">
-            <a class="nav-link " href="../empresas/empresas.php">Empresas</a>
+        <li class="nav nav-item">
+            <a class="nav-link" href="../empresas/empresas.php">Empresas</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item nav-pills">
             <a class="nav-link" href="../facturas/facturas.html">Facturas</a>
         </li>
-        <li class="nav ">
-            <a class="nav-link " href="../busquedas/busquedas.php">Busquedas</a>
+        <li class="nav nav-item">
+            <a class="nav-link" href="../busquedas/busquedas.php">Busquedas</a>
         </li>
-		
-		
+        <li class="nav nav-item">
+            <a class="nav-link" href="../consultas/consultas.php">Consultas</a>
+        </li>
+
     </ul>
     <div class="container mt-3">
         <div class="row">
             <?php
-                if(isset($_GET["cedula"])){
-             ?>
+            if (isset($_GET["cedula"])) {
+                ?>
             <div class="col-6 px-2">
                 <div class="card">
                     <div class="card-header">
@@ -57,35 +57,33 @@
                         <form action="update_p.php" class="form-group" method="post">
                             <div class="form-group">
                                 <label for="cedula">Cedula</label>
-                                <input type="text" readonly name="cedula" value=<?=$_GET["cedula"];?> id="cedula"
-                                    class="form-control">
+                                <input type="text" readonly name="cedula" value=<?= $_GET["cedula"]; ?> id="cedula" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="">Nombre</label>
-                                <input type="text" name="nombre" value='<?=$_GET["nombre"];?>' id="name" class="form-control">
+                                <input type="text" name="nombre" value='<?= $_GET["nombre"]; ?>' id="name" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="">Direccion</label>
-                                <input type="text" name="direccion" value='<?=$_GET["direccion"];?>' id="direccion" class="form-control">
+                                <input type="text" name="direccion" value='<?= $_GET["direccion"]; ?>' id="direccion" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="">Telefono</label>
-                                <input type="text" name="telefono" value=<?=$_GET["telefono"];?> id="telefono" class="form-control">
+                                <input type="text" name="telefono" value=<?= $_GET["telefono"]; ?> id="telefono" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="">Género</label>
-                                <input type="text" name="genero" value=<?=$_GET["genero"];?> id="genero" class="form-control">
+                                <input type="text" name="genero" value=<?= $_GET["genero"]; ?> id="genero" class="form-control">
                             </div>
-                            
+
                         </form>
 
                     </div>
                 </div>
             </div>
             <?php
-           }
-        else{
-             ?>
+            } else {
+                ?>
             <div class="col-6 px-2">
                 <div class="card">
                     <div class="card-header">
@@ -110,23 +108,25 @@
                                 <label for="">Direccion</label>
                                 <input type="text" name="direccion" id="direccion" class="form-control">
                             </div>
-                            
+
                             <div class="form-group">
                                 <label for="">Género</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                                        value="P" checked>
+                                    <input class="form-check-input" type="radio" name="genero" id="exampleRadios1" value="P" checked>
                                     <label class="form-check-label" for="exampleRadios1">
                                         Masculino
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2"
-                                        value="C">
+                                    <input class="form-check-input" type="radio" name="genero" id="exampleRadios2" value="C">
                                     <label class="form-check-label" for="exampleRadios2">
                                         Femenino
                                     </label>
                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Atendido por empleado con cedula</label>
+                                <input type="text" name="cedula_empleado" id="cedula_empleado" class="form-control">
                             </div>
                             <div class="form-group">
                                 <input type="submit" class="btn btn-primary" value="insertar">
@@ -138,10 +138,9 @@
             </div>
 
             <?php
-        }
-        ?>
+            }
+            ?>
             <div class="col-6 px-2">
-
                 <table class="table border-rounded">
                     <thead class="thead-dark">
                         <tr>
@@ -150,66 +149,53 @@
                             <th scope="col">Direccion</th>
                             <th scope="col">Telefono</th>
                             <th scope="col">Género</th>
+                            <th scope="col">Atendido por</th>
                             <th scope="col">Opciones</th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php 
+                        <?php
                         require('select_p.php');
-                        if($result){
-                            foreach ($result as $fila){
-                        ?>
+                        if ($result) {
+                            foreach ($result as $fila) {
+                                ?>
                         <tr>
-                            <td><?=$fila['cedula'];?></td>
-                            <td><?=$fila['nombre'];?></td>
+                            <td><?= $fila['cedula']; ?></td>
+                            <td><?= $fila['nombre']; ?></td>
 
-                            <td><?=$fila['direccion'];?></td>
+                            <td><?= $fila['direccion']; ?></td>
 
-                            <td><?=$fila['telefono'];?></td>
+                            <td><?= $fila['telefono']; ?></td>
                             <td>
-
                                 <form action="delete_p.php" method="POST">
-                                    <input type="text" value=<?=$fila['cedula'];?> hidden>
-                                    <input type="text" name="d" value=<?=$fila['cedula'];?> hidden>
-                                    <button class="btn btn-danger" title="eliminar" type="submit"><i
-                                            class="fas fa-trash-alt"></i></button>
+                                    <input type="text" value=<?= $fila['cedula']; ?> hidden>
+                                    <input type="text" name="d" value=<?= $fila['cedula']; ?> hidden>
+                                    <button class="btn btn-danger" title="eliminar" type="submit"><i class="fas fa-trash-alt"></i></button>
                                 </form>
                             </td>
                             <td class="mx-0 pr-2">
                                 <form action="personas.php" method="GET">
-                                    
-                                    <input type="text" name="cedula" value=<?=$fila['cedula'];?> hidden>
-                                    <input type="text" name="nombre" value='<?=$fila['nombre'];?>' hidden>
-                                    <input type="text" name="direccion" value='<?=$fila['direccion'];?>' hidden>
-                                    <input type="text" name="telefono" value=<?=$fila['telefono'];?> hidden>
 
-                                    <button class="btn btn-primary" title="editar" type="submit"><i
-                                            class="far fa-edit"></i></button>
+                                    <input type="text" name="cedula" value=<?= $fila['cedula']; ?> hidden>
+                                    <input type="text" name="nombre" value='<?= $fila['nombre']; ?>' hidden>
+                                    <input type="text" name="direccion" value='<?= $fila['direccion']; ?>' hidden>
+                                    <input type="text" name="telefono" value=<?= $fila['telefono']; ?> hidden>
+
+                                    <button class="btn btn-primary" title="editar" type="submit"><i class="far fa-edit"></i></button>
                                 </form>
                             </td>
-
-
-
                         </tr>
-                        <?php                    
-
-                                }
+                        <?php
                             }
-                            
-                            ?>
+                        }
+
+                        ?>
                     </tbody>
                 </table>
-
             </div>
         </div>
-
-
     </div>
-
-
-
-
 </body>
 
 </html>
