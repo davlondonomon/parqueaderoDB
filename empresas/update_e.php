@@ -4,7 +4,7 @@
 require('../configuraciones/conexion.php');
 
 //query
-$query="UPDATE empresa SET nombre='$_POST[nombre]',direccion='$_POST[direccion]',pagina_web='$_POST[pagina_web]' WHERE nit='$_POST[nit]'";
+$query="UPDATE empresa SET nombre_empresa='$_POST[nombre]',telefono_empresa='$_POST[telefono]',nombre_gerente='$_POST[gerente]' WHERE nit='$_POST[nit]'";
 $result = mysqli_query($conn, $query) or 
 die(mysqli_error($conn));
  

@@ -65,23 +65,34 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Hora</label>
-                                <input type="text" name="hora" id="valor" class="form-control">
+                                <input type="time" name="hora" id="hora" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="">Costo total</label>
-                                <input type="date" name="costo-total" id="costo-total" class="form-control">
+                                <input type="text" name="costoTotal" id="costoTotal" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="">Cedula empleado</label>
-                                <input type="text" name="cedula-empleado" id="cedula-empleado" class="form-control">
+                                <input type="text" name="cedulaEmpleado" id="cedulaEmpleado" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="">Cedula persona</label>
-                                <input type="text" name="Cedula-persona" id="Cedula-persona" class="form-control">
+                                <label for="">Factura para empresa o persona.</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="persona_empresa" id="empresa" value="empresa" checked>
+                                    <label class="form-check-label" for="exampleRadios1">
+                                        empresa
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="persona_empresa" id="persona" value="persona">
+                                    <label class="form-check-label" for="exampleRadios2">
+                                        persona
+                                    </label>
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="">Nit Empresa</label>
-                                <input type="text" name="nit" id="nit" class="form-control">
+                                <label for="">Cedula o nit</label>
+                                <input type="text" name="cedula_nit" id="cedula_nit" class="form-control">
                             </div>
                             <div class="form-group">
                                 <input type="submit" class="btn btn-primary" value="insertar">

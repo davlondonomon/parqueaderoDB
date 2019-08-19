@@ -65,7 +65,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Nombre</label>
-                                <input type="text" name="nombre" value='<?=$_GET["nombre"];?>' id="name" class="form-control">
+                                <input type="text" name="nombre" value='<?=$_GET["nombre"];?>' id="nombre" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="">Teléfono</label>
@@ -105,15 +105,15 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Nombre</label>
-                                <input type="text" name="nombre" id="name" class="form-control">
+                                <input type="text" name="nombre_empresa" id="nombre_empresa" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="">Teléfono</label>
-                                <input type="text" name="telefono" id="telefono" class="form-control">
+                                <input type="text" name="telefono_empresa" id="telefono_empresa" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="">Gerente</label>
-                                <input type="text" name="gerente" id="gerente" class="form-control">
+                                <input type="text" name="nombre_gerente" id="nombre_gerente" class="form-control">
                             </div>
 
                             <div class="form-group">
@@ -150,11 +150,9 @@
                         ?>
                         <tr>
                             <td><?=$fila['nit'];?></td>
-                            <td><?=$fila['nombre'];?></td>
-
-                            <td><?=$fila['telefono'];?></td>
-
-                            <td><?=$fila['gerente'];?></td>
+                            <td><?=$fila['nombre_empresa'];?></td>
+                            <td><?=$fila['telefono_empresa'];?></td>
+                            <td><?=$fila['nombre_gerente'];?></td>
                             <td>
 
                                 <form action="delete_e.php" method="POST">
@@ -168,9 +166,9 @@
                                 <form action="empresas.php" method="GET">
                                     
                                     <input type="text" name="nit" value=<?=$fila['nit'];?> hidden>
-                                    <input type="text" name="nombre" value='<?=$fila['nombre'];?>' hidden>
-                                    <input type="text" name="telefono" value='<?=$fila['telefono'];?>' hidden>
-                                    <input type="text" name="gerente" value=<?=$fila['gerente'];?> hidden>
+                                    <input type="text" name="nombre" value='<?=$fila['nombre_empresa'];?>' hidden>
+                                    <input type="text" name="telefono" value='<?=$fila['telefono_empresa'];?>' hidden>
+                                    <input type="text" name="gerente" value=<?=$fila['nombre_gerente'];?> hidden>
 
                                     <button class="btn btn-primary" title="editar" type="submit"><i
                                             class="far fa-edit"></i></button>

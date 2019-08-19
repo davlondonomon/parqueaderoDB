@@ -73,9 +73,26 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Género</label>
-                                <input type="text" name="genero" value=<?= $_GET["genero"]; ?> id="genero" class="form-control">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="genero" id="exampleRadios1" value="masculino" checked>
+                                    <label class="form-check-label" for="exampleRadios1">
+                                        Masculino
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="genero" id="exampleRadios2" value="femenino">
+                                    <label class="form-check-label" for="exampleRadios2">
+                                        Femenino
+                                    </label>
+                                </div>
                             </div>
-
+                            <div class="form-group">
+                                <label for="">Atendido por empleado con cedula</label>
+                                <input type="text" name="cedula_empleado" value=<?= $_GET["cedula_empleado"]; ?> id="cedula_empleado" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary" value="Editar">
+                            </div>
                         </form>
 
                     </div>
@@ -112,13 +129,13 @@
                             <div class="form-group">
                                 <label for="">Género</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="genero" id="exampleRadios1" value="P" checked>
+                                    <input class="form-check-input" type="radio" name="genero" id="exampleRadios1" value="masculino" checked>
                                     <label class="form-check-label" for="exampleRadios1">
                                         Masculino
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="genero" id="exampleRadios2" value="C">
+                                    <input class="form-check-input" type="radio" name="genero" id="exampleRadios2" value="femenino">
                                     <label class="form-check-label" for="exampleRadios2">
                                         Femenino
                                     </label>
@@ -129,8 +146,8 @@
                                 <input type="text" name="cedula_empleado" id="cedula_empleado" class="form-control">
                             </div>
                             <div class="form-group">
-                                <input type="submit" class="btn btn-primary" value="insertar">
-                                <a href="personas.php" class="btn btn-success">Reiniciar</a>
+                                <input type="submit" class="btn btn-primary" value="Insertar">
+                                <a href="personas.php" class="btn btn-success">Cancelar</a>
                             </div>
                         </form>
                     </div>
@@ -161,26 +178,28 @@
                             foreach ($result as $fila) {
                                 ?>
                         <tr>
-                            <td><?= $fila['cedula']; ?></td>
-                            <td><?= $fila['nombre']; ?></td>
-
+                            <td><?= $fila['cedula_persona']; ?></td>
+                            <td><?= $fila['nombre_persona']; ?></td>
                             <td><?= $fila['direccion']; ?></td>
-
-                            <td><?= $fila['telefono']; ?></td>
+                            <td><?= $fila['telefono_persona']; ?></td>
+                            <td><?= $fila['genero']; ?></td>
+                            <td><?= $fila['cedula_empleado']; ?></td>
                             <td>
                                 <form action="delete_p.php" method="POST">
-                                    <input type="text" value=<?= $fila['cedula']; ?> hidden>
-                                    <input type="text" name="d" value=<?= $fila['cedula']; ?> hidden>
+                                    <input type="text" value=<?= $fila['cedula_persona']; ?> hidden>
+                                    <input type="text" name="cedula_persona" value=<?= $fila['cedula_persona']; ?> hidden>
                                     <button class="btn btn-danger" title="eliminar" type="submit"><i class="fas fa-trash-alt"></i></button>
                                 </form>
                             </td>
                             <td class="mx-0 pr-2">
                                 <form action="personas.php" method="GET">
 
-                                    <input type="text" name="cedula" value=<?= $fila['cedula']; ?> hidden>
-                                    <input type="text" name="nombre" value='<?= $fila['nombre']; ?>' hidden>
+                                    <input type="text" name="cedula" value=<?= $fila['cedula_persona']; ?> hidden>
+                                    <input type="text" name="nombre" value='<?= $fila['nombre_persona']; ?>' hidden>
                                     <input type="text" name="direccion" value='<?= $fila['direccion']; ?>' hidden>
-                                    <input type="text" name="telefono" value=<?= $fila['telefono']; ?> hidden>
+                                    <input type="text" name="telefono" value=<?= $fila['telefono_persona']; ?> hidden>
+                                    <input type="text" name="genero" value=<?= $fila['genero']; ?> hidden>
+                                    <input type="text" name="cedula_empleado" value=<?= $fila['cedula_empleado']; ?> hidden>
 
                                     <button class="btn btn-primary" title="editar" type="submit"><i class="far fa-edit"></i></button>
                                 </form>

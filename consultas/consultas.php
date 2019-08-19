@@ -49,67 +49,34 @@
                         Consultas
                     </div>
                     <div class="card-body">
-                        <form action="insert_p.php" class="form-group" method="post">
+                        <form action="consultas.php" class="form-group" method="post">
                             <div class="form-group">
-                                <input type="submit" class="btn btn-primary" value="Facturas sin empresas ni empleados">
-                                <input type="submit" class="btn btn-primary" value="Empleado con mayor número de facturas">
-                                <input type="submit" class="btn btn-primary" value="Empresas con monto total menor o igual a 5000">
+                                <label for="">Elija la consulta que desea realizar</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="consulta" id="exampleRadios1" value="1" checked>
+                                    <label class="form-check-label" for="exampleRadios1">
+                                        Facturas sin empresas ni empleados.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="consulta" id="exampleRadios1" value="2" checked>
+                                    <label class="form-check-label" for="exampleRadios1">
+                                        Empleado con mayor número de facturas.
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="consulta" id="exampleRadios2" value="3">
+                                    <label class="form-check-label" for="exampleRadios2">
+                                        Empresas con monto total menor a 5000.
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary" value="Realizar consulta">
                             </div>
                         </form>
                     </div>
                 </div>
-                <table class="table border-rounded">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">Cedula</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Direccion</th>
-                            <th scope="col">Telefono</th>
-                            <th scope="col">Género</th>
-                            <th scope="col">Atendido por</th>
-                            <th scope="col">Opciones</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                        require('select_p.php');
-                        if ($result) {
-                            foreach ($result as $fila) {
-                                ?>
-                        <tr>
-                            <td><?= $fila['cedula']; ?></td>
-                            <td><?= $fila['nombre']; ?></td>
-
-                            <td><?= $fila['direccion']; ?></td>
-
-                            <td><?= $fila['telefono']; ?></td>
-                            <td>
-                                <form action="delete_p.php" method="POST">
-                                    <input type="text" value=<?= $fila['cedula']; ?> hidden>
-                                    <input type="text" name="d" value=<?= $fila['cedula']; ?> hidden>
-                                    <button class="btn btn-danger" title="eliminar" type="submit"><i class="fas fa-trash-alt"></i></button>
-                                </form>
-                            </td>
-                            <td class="mx-0 pr-2">
-                                <form action="personas.php" method="GET">
-
-                                    <input type="text" name="cedula" value=<?= $fila['cedula']; ?> hidden>
-                                    <input type="text" name="nombre" value='<?= $fila['nombre']; ?>' hidden>
-                                    <input type="text" name="direccion" value='<?= $fila['direccion']; ?>' hidden>
-                                    <input type="text" name="telefono" value=<?= $fila['telefono']; ?> hidden>
-
-                                    <button class="btn btn-primary" title="editar" type="submit"><i class="far fa-edit"></i></button>
-                                </form>
-                            </td>
-                        </tr>
-                        <?php
-                            }
-                        }
-
-                        ?>
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>

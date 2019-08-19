@@ -27,7 +27,7 @@ CREATE TABLE empleado(
     nombre_empleado VARCHAR(40) NOT NULL, 
     genero VARCHAR(10) NOT NULL, 
     correo_electronico VARCHAR(40) NOT NULL UNIQUE,
-    tipo VARCHAR(10),
+    tipo VARCHAR(13),
 
     CHECK (genero = 'masculino' OR genero = 'femenino'),
     CHECK ((tipo = 'administrador' AND titulo_academico IS NOT NULL AND certificacion_lavado IS NULL) OR (tipo = 'raso' AND titulo_academico IS NULL AND certificacion_lavado IS NOT NULL))
@@ -139,8 +139,6 @@ CREATE TABLE celda(
 
 )ENGINE = InnoDB;
 
-
- 
 ALTER TABLE persona ADD FOREIGN KEY (cedula_empleado) REFERENCES empleado(cedula_empleado);
 ALTER TABLE administrador ADD FOREIGN KEY (cedula_empleado) REFERENCES empleado(cedula_empleado); 
 ALTER TABLE raso ADD FOREIGN KEY (cedula_empleado) REFERENCES empleado(cedula_empleado); 

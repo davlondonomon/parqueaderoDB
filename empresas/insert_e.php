@@ -11,8 +11,8 @@ if($nit<0){
 }
 
 else{
-	$query="INSERT INTO `empresa`(`nit`,`nombre`, `direccion`, `pagina_web`)
- 	VALUES ('$_POST[nit]','$_POST[nombre]','$_POST[direccion]','$_POST[pagina_web]')";
+	$query="INSERT INTO `empresa`(`nit`,`nombre_empresa`, `telefono_empresa`, `nombre_gerente`)
+ 	VALUES ('$_POST[nit]','$_POST[nombre_empresa]','$_POST[telefono_empresa]','$_POST[nombre_gerente]')";
 	$result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
  	if($result){
