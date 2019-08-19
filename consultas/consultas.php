@@ -133,7 +133,7 @@ if (isset($_POST["consulta"])) {
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="consulta" id="exampleRadios1" value="1">
                                     <label class="form-check-label" for="exampleRadios1">
-                                        Facturas sin empresas ni personas.
+                                        Facturas sin empresas ni empleados.
                                     </label>
                                 </div>
                                 <div class="form-check">
