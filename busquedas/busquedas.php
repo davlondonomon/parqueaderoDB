@@ -1,8 +1,9 @@
 <?php
 $link = mysqli_connect("localhost", "parqueadero", "clave", "parqueadero");
 $resultado = '';
-if (isset($_POST["nombre_empleado"]) || (isset($_POST["nit"])) && isset($_POST["fecha"])) {
-    if (isset($_POST["nombre_empleado"])) {
+if (isset($_POST["nombre_persona"]) || (isset($_POST["nit"])) && isset($_POST["fecha"])) {
+    if (isset($_POST["nombre_persona"])) {
+        $nombre_persona = $_POST["nombre_persona"];
         $resultado =
             '<div class="col-6 px-2">
                 <table class="table border-rounded">
@@ -20,7 +21,7 @@ if (isset($_POST["nombre_empleado"]) || (isset($_POST["nit"])) && isset($_POST["
                     </thead>
                     <tbody>';
         //reemplazar con consulta
-        $query = mysqli_query($link, "SELECT * from factura");
+        $query = mysqli_query($link, "SELECT * FROM factura WHERE cedula_persona = (SELECT cedula_persona FROM persona WHERE nombre_persona='" . $nombre_persona . "')");
         while ($row = mysqli_fetch_array($query)) {
             $codigo_factura = $row['codigo_factura'];
             $fecha_de_generacion = $row['fecha_de_generacion'];
@@ -33,6 +34,8 @@ if (isset($_POST["nombre_empleado"]) || (isset($_POST["nit"])) && isset($_POST["
             $resultado .= '<tr><td>' . $codigo_factura . '</td><td>' . $fecha_de_generacion . '</td><td>' . $hora_de_generacion . '</td><td>' . $costo_total . '</td><td>' . $cedula_empleado . '</td><td>' . $cedula_persona . '</td><td>' . $nit . '</td></tr>';
         }
     } else {
+        $nit = $_POST['nit'];
+        $fecha = $_POST['fecha'];
         $resultado =
             '<div class="col-6 px-2">
                 <table class="table border-rounded">
@@ -50,7 +53,9 @@ if (isset($_POST["nombre_empleado"]) || (isset($_POST["nit"])) && isset($_POST["
                     </thead>
                     <tbody>';
         //reemplazar con consulta
-        $query = mysqli_query($link, "SELECT * from factura");
+        //$
+        //$query = mysqli_query($link, 'SELECT * FROM factura WHERE nit=' . $nit . ' AND fecha_de_generacion=' . $fecha . '');
+        $query = mysqli_query($link, 'SELECT * FROM factura WHERE nit=' . $nit . ' AND fecha_de_generacion=\'' . $fecha . '\'');
         while ($row = mysqli_fetch_array($query)) {
             $codigo_factura = $row['codigo_factura'];
             $fecha_de_generacion = $row['fecha_de_generacion'];
@@ -118,14 +123,14 @@ if (isset($_POST["nombre_empleado"]) || (isset($_POST["nit"])) && isset($_POST["
             <div class="col-6">
                 <div class="card">
                     <div class="card-header">
-                        Facturas de empleado
+                        Facturas de persona
                     </div>
                     <div class="card-body">
                         <form action="busquedas.php" class="form-group" method="post">
                             <div class="form-group">
-                                <p>Ingrese el nombre del empleado.</p>
+                                <p>Ingrese el nombre de la persona.</p>
                                 <div class="input-group ">
-                                    <input type="text" name="nombre_empleado" id="nombre_empleado" class="form-control">
+                                    <input type="text" name="nombre_persona" id="nombre_persona" class="form-control">
                                     <button class="btn  btn-primary" title="Buscar" type="submit">
                                         <i class="fas fa-search-plus mx-0 my-0"> </i></button>
                                 </div>
