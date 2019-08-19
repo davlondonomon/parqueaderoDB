@@ -1,5 +1,83 @@
-<!-- En esta pagina puede encontrar mas informacion acerca de la estructura de un documento html 
-    http://www.iuma.ulpgc.es/users/jmiranda/docencia/Tutorial_HTML/estruct.htm-->
+<?php
+$link = mysqli_connect("localhost", "parqueadero", "clave", "parqueadero");
+$resultado = '';
+if (isset($_POST["consulta"])) {
+    $tipo = $_POST["consulta"];
+    if ($tipo == 1) {
+        $resultado =
+            '<div class="col-6 px-2">
+                <table class="table border-rounded">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Codigo</th>
+                            <th scope="col">Fecha de Generacion</th>
+                            <th scope="col">Hora de Generacion</th>
+                            <th scope="col">Costo total</th>
+                            <th scope="col">Cedula empleado</th>
+                            <th scope="col">cedula persona</th>
+                            <th scope="col">NIT</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>';
+        //reemplazar con consulta
+        $query = mysqli_query($link, "SELECT * from factura");
+        while ($row = mysqli_fetch_array($query)) {
+            $codigo_factura = $row['codigo_factura'];
+            $fecha_de_generacion = $row['fecha_de_generacion'];
+            $hora_de_generacion = $row['hora_de_generacion'];
+            $costo_total = $row['costo_total'];
+            $cedula_empleado = $row['cedula_empleado'];
+            $cedula_persona = $row['cedula_persona'];
+            $nit = $row['nit'];
+            //$resultado.=''.$codigo_factura.''.$fecha_de_generacion.''.$hora_de_generacion.''.$costo_total.''.$cedula_empleado.''.$cedula_empleado.''.$cedula_persona.''.$nit;
+            $resultado .= '<tr><td>' . $codigo_factura . '</td><td>' . $fecha_de_generacion . '</td><td>' . $hora_de_generacion . '</td><td>' . $costo_total . '</td><td>' . $cedula_empleado . '</td><td>' . $cedula_persona . '</td><td>' . $nit . '</td></tr>';
+        }
+    } elseif ($tipo == 2) {
+        $resultado =
+            '<div class="col-6 px-2">
+                <table class="table border-rounded">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Cedula empleado</th>
+                            <th scope="col">Nombre</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>';
+        //reemplazar con consulta
+        $query = mysqli_query($link, "SELECT * from empleado");
+        while ($row = mysqli_fetch_array($query)) {
+            $cedula_empleado=$row['cedula_empleado'];
+            $nombre_empleado=$row['nombre_empleado'];
+            $resultado.='<tr><td>'.$cedula_empleado.'</td><td>'.$nombre_empleado.'</td></tr>';
+         }
+    } elseif ($tipo == 3) {
+        $resultado =
+            '<div class="col-6 px-2">
+                <table class="table border-rounded">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">NIT</th>
+                            <th scope="col">Nombre</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>';
+        //reemplazar con consulta
+        $query = mysqli_query($link,"SELECT * from empresa");
+        while ($row = mysqli_fetch_array($query)) {
+            $nit=$row['nit'];
+            $nombre_empresa=$row['nombre_empresa'];
+            $resultado.='<tr><td>'.$nit.'</td><td>'.$nombre_empresa.'</td></tr>';
+         }
+    }
+    $resultado .=
+        '</tbody>
+                </table>
+            </div>';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <!--cabezera del html -->
@@ -53,13 +131,13 @@
                             <div class="form-group">
                                 <label for="">Elija la consulta que desea realizar</label>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="consulta" id="exampleRadios1" value="1" checked>
+                                    <input class="form-check-input" type="radio" name="consulta" id="exampleRadios1" value="1">
                                     <label class="form-check-label" for="exampleRadios1">
                                         Facturas sin empresas ni empleados.
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="consulta" id="exampleRadios1" value="2" checked>
+                                    <input class="form-check-input" type="radio" name="consulta" id="exampleRadios1" value="2">
                                     <label class="form-check-label" for="exampleRadios1">
                                         Empleado con mayor número de facturas.
                                     </label>
@@ -77,6 +155,9 @@
                         </form>
                     </div>
                 </div>
+                <?php
+                print($resultado);
+                ?>
             </div>
         </div>
     </div>
