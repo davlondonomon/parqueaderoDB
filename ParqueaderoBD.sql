@@ -176,9 +176,17 @@ FROM factura where cedula_persona is not null
 
 GROUP BY cedula_persona;
 
-SELECT cedula_persona, COUNT(*) as con
+SELECT * from persona where cedula_persona in (
+SELECT cedula_persona
+FROM factura where cedula_persona is not null
+group by cedula_persona)
+;
+
+SELECT COUNT(*) as con
 FROM factura where cedula_persona is not null
 group by cedula_persona
+ORDER by count(*) desc
+limit 1
 ;
 
 select cedula_persona
@@ -188,3 +196,39 @@ group by cedula_persona
 having count(*) = (select count(*) from factura);
 
 select cedula_persona, count(cedula_persona) as con from factura where cedula_persona = 0 group by cedula_persona ;
+
+select codigo,nombre
+                            from    (select *
+                                    from cliente)c
+                                JOIN
+                                    (select *
+                                    FROM    (SELECT max(nro) as comparador
+                                            from    (select ,count() as nro
+                                                    from entierro
+                                                    where pagador_cliente is not null
+                                                    group by pagador_cliente) t) tw
+                                                JOIN
+                                                    (select pagador_cliente,count(*) as nro
+                                                    from entierro
+                                                    where pagador_cliente is not null
+                                                    group by pagador_cliente) tcomp
+                                                where (comparador = nro)) xb on xb.pagador_cliente = c.codigo;
+
+select cedula_persona from factura;
+
+SELECT cedula_persona, nombre_persona
+FROM persona NATURAL JOIN (
+SELECT cedula_persona, COUNT(*) AS conteo)
+FROM factura
+GROUP BY cedula_persona
+SELECT cedula_persona, nombre_persona
+                                    FROM persona NATURAL JOIN (
+                                    SELECT cedula_persona, COUNT(*) AS conteo
+                                    FROM factura
+                                    GROUP BY cedula_persona)
+
+SELECT cedula_persona, COUNT(*) as con
+FROM factura where cedula_persona is not null
+group by cedula_persona;
+
+select cedula_persona, nombre_persona from persona where cedula_persona = (select max(cedula_persona) from persona)

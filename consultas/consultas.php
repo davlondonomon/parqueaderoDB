@@ -46,7 +46,14 @@ if (isset($_POST["consulta"])) {
                     </thead>
                     <tbody>';
         //reemplazar con consulta
-        $query = mysqli_query($link, "SELECT * from empleado");
+        $query = mysqli_query($link, "SELECT cedula_empleado, nombre_empleado from empleado where cedula_empleado in (select cedula_empleado from (SELECT cedula_empleado, COUNT(*) as con 
+        FROM factura 
+        where cedula_empleado is not null 
+        group by cedula_empleado) as x 
+                                where con = (select max(con) 
+                                             from (SELECT cedula_empleado, COUNT(*) as con
+                                                   FROM factura where cedula_empleado is not null
+                                                   group by cedula_empleado)as z))");
         while ($row = mysqli_fetch_array($query)) {
             $cedula_empleado=$row['cedula_empleado'];
             $nombre_empleado=$row['nombre_empleado'];
@@ -65,7 +72,11 @@ if (isset($_POST["consulta"])) {
                     </thead>
                     <tbody>';
         //reemplazar con consulta
-        $query = mysqli_query($link,"SELECT * from empresa");
+        $query = mysqli_query($link,"SELECT nit, nombre_empresa
+                                     FROM empresa NATURAL JOIN factura
+                                     WHERE nit IS NOT null
+                                     GROUP BY nit
+                                     HAVING SUM(costo_total) <= 5000");
         while ($row = mysqli_fetch_array($query)) {
             $nit=$row['nit'];
             $nombre_empresa=$row['nombre_empresa'];
