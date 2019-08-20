@@ -108,7 +108,7 @@ if (isset($_POST["nombre_persona"]) || (isset($_POST["nit"])) && isset($_POST["f
             <a class="nav-link" href="../empresas/empresas.php">Empresas</a>
         </li>
         <li class="nav-item nav-pills">
-            <a class="nav-link" href="../facturas/facturas.html">Facturas</a>
+            <a class="nav-link" href="../facturas/facturas.php">Facturas</a>
         </li>
         <li class="nav-item nav-pills">
             <a class="nav-link active" href="busquedas.php">Busquedas</a>

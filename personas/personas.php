@@ -25,16 +25,16 @@
         <li class="nav nav-item">
             <a class="nav-link" href="../index.html">inicio</a>
         </li>
-        <li class="nav-item nav-pills">
+        <li class="nav nav-item nav-pills">
             <a class="nav-link active" href="personas.php">Personas</a>
         </li>
         <li class="nav nav-item">
             <a class="nav-link" href="../empresas/empresas.php">Empresas</a>
         </li>
         <li class="nav-item nav-pills">
-            <a class="nav-link" href="../facturas/facturas.html">Facturas</a>
+            <a class="nav-link" href="../facturas/facturas.php">Facturas</a>
         </li>
-        <li class="nav nav-item">
+        <li class="nav-item nav-pills">
             <a class="nav-link" href="../busquedas/busquedas.php">Busquedas</a>
         </li>
         <li class="nav nav-item">

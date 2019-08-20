@@ -25,22 +25,22 @@
     <!--Barra de navegacion-->
     <ul class="nav">
         <li class="nav nav-item">
-            <a class="nav-link " href="../index.html">inicio</a>
+            <a class="nav-link" href="../index.html">inicio</a>
         </li>
-        <li class="nav ">
-            <a class="nav-link " href="../personas/personas.php">Personas</a>
+        <li class="nav nav-item">
+            <a class="nav-link" href="../personas/personas.php">Personas</a>
         </li>
-		<li class="nav ">
-            <a class="nav-link " href="../empresas/empresas.php">Empresas</a>
+        <li class="nav nav-item">
+            <a class="nav-link" href="../empresas/empresas.php">Empresas</a>
         </li>
         <li class="nav-item nav-pills">
-            <a class="nav-link active" href="facturas.html">Facturas</a>
+            <a class="nav-link active" href="facturas.php">Facturas</a>
         </li>
-        <li class="nav ">
-            <a class="nav-link " href="../busquedas/busquedas.php">Busquedas</a>
+        <li class="nav-item nav-pills">
+            <a class="nav-link" href="../busquedas/busquedas.php">Busquedas</a>
         </li>
-        <li class="nav ">
-            <a class="nav-link " href="../consultas/consultas.php">Consultas</a>
+        <li class="nav nav-item">
+            <a class="nav-link" href="../consultas/consultas.php">Consultas</a>
         </li>
 
     </ul>

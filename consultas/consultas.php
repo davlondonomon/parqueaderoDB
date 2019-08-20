@@ -121,14 +121,15 @@ if (isset($_POST["consulta"])) {
             <a class="nav-link" href="../empresas/empresas.php">Empresas</a>
         </li>
         <li class="nav-item nav-pills">
-            <a class="nav-link" href="../facturas/facturas.html">Facturas</a>
+            <a class="nav-link" href="../facturas/facturas.php">Facturas</a>
         </li>
         <li class="nav-item nav-pills">
             <a class="nav-link" href="../busquedas/busquedas.php">Busquedas</a>
         </li>
-        <li class="nav-item nav-pills">
-            <a class="nav-link active" href="../consultas/consultas.php">Consultas</a>
+        <li class="nav nav-item nav-pills">
+            <a class="nav-link active" href="consultas.php">Consultas</a>
         </li>
+
     </ul>
     <div class="container mt-3">
         <div class="row">
